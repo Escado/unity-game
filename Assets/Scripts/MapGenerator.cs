@@ -54,19 +54,21 @@ public class MapGenerator : MonoBehaviour
 
         Renderer renderer = null;
 
+        var parent = GameObject.Find("Tiles");
+
         float maxHeight = float.MinValue;
 
-        for (int i = 0; i < Heigth; i++)
+        for (int i = 1; i <= Heigth; i++)
         {
             Map[i] = new GameObject[Width];
 
             offsetX = 0f;
 
-            for (int j = 0; j < Width; j++)
+            for (int j = 1; j <= Width; j++)
             {
                 int rand = UnityEngine.Random.Range(0, total);
 
-                Map[i][j] = Instantiate(Tiles[weightIndexes.First(x => rand >= x.from && rand < x.to).index].Tile, new Vector3(transform.position.x + offsetX, transform.position.y, transform.position.z + offsetZ), new Quaternion(0, 0, 0, 0), this.transform);
+                Map[i][j] = Instantiate(Tiles[weightIndexes.First(x => rand >= x.from && rand < x.to).index].Tile, new Vector3(transform.position.x + offsetX, transform.position.y, transform.position.z + offsetZ), new Quaternion(0, 0, 0, 0), parent.transform);
 
                 renderer = Map[i][j].GetComponentInChildren<Renderer>();
 
